@@ -1,0 +1,11 @@
+meta {
+  name: check
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:5050/api/auth/logout
+  body: json
+  auth: inherit
+}
