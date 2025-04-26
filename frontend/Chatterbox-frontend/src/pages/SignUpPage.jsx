@@ -12,8 +12,11 @@ const SignUpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/auth/signup', { fullName, email, password });
+      const response = await axios.post('http://localhost:5050/api/auth/signup', { fullName, email, password });
       const { _id, fullName: signedUpFullName, email: signedUpEmail } = response.data;
+
+      console.log(fullName, email);
+      
 
       localStorage.setItem('user', JSON.stringify({
         _id,
