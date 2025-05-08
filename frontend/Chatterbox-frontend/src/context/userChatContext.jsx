@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useCallback } from "react";
 import toast from "react-hot-toast";
 import { axiosInstance } from "../lib/axios";
 /* import { useAuthStore } from "./useAuthStore"; // Only needed for socket, see note below */
@@ -11,6 +11,8 @@ export const ChatProvider = ({ children }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [isUsersLoading, setIsUsersLoading] = useState(false);
   const [isMessagesLoading, setIsMessagesLoading] = useState(false);
+
+ 
 
   // Fetch users for sidebar
   async function getUsers() {
@@ -26,17 +28,17 @@ export const ChatProvider = ({ children }) => {
   }
 
   // Fetch messages with a specific user
-  async function getMessages(userId) {
-    setIsMessagesLoading(true)
+  const getMessages = useCallback(async (userId) => {
+    setIsMessagesLoading(true);
     try {
-        const res = await axiosInstance.get(`/messages/${userId}`);
+      const res = await axiosInstance.get(`/messages/${userId}`);
       setMessages(res.data);
     } catch (error) {
-        toast.error(error?.response?.data?.message || "Failed to load messages");
-      } finally {
-        setIsMessagesLoading(false);
-      }
-  }
+      toast.error(error?.response?.data?.message || "Failed to load messages");
+    } finally {
+      setIsMessagesLoading(false);
+    }
+  }, []);
 
   // Send a new message
   async function sendMessage(messageData) {
