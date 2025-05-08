@@ -1,11 +1,9 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { axiosInstance } from "../lib/axios";
 /* import { useAuthStore } from "./useAuthStore"; // Only needed for socket, see note below */
 
-const ChatContext = createContext();
-
-export const useChatContext = () => useContext(ChatContext);
+export const userChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
@@ -15,7 +13,7 @@ export const ChatProvider = ({ children }) => {
   const [isMessagesLoading, setIsMessagesLoading] = useState(false);
 
   // Fetch users for sidebar
-  const getUsers = useCallback(async () => {
+  async function getUsers() {
     setIsUsersLoading(true);
     try {
       const res = await axiosInstance.get("/messages/users");
@@ -25,40 +23,45 @@ export const ChatProvider = ({ children }) => {
     } finally {
       setIsUsersLoading(false);
     }
-  }, []);
+  }
 
   // Fetch messages with a specific user
-  const getMessages = useCallback(async (userId) => {
-    setIsMessagesLoading(true);
+  async function getMessages(userId) {
+    setIsMessagesLoading(true)
     try {
-      const res = await axiosInstance.get(`/messages/${userId}`);
+        const res = await axiosInstance.get(`/messages/${userId}`);
       setMessages(res.data);
     } catch (error) {
-      toast.error(error?.response?.data?.message || "Failed to load messages");
-    } finally {
-      setIsMessagesLoading(false);
-    }
-  }, []);
+        toast.error(error?.response?.data?.message || "Failed to load messages");
+      } finally {
+        setIsMessagesLoading(false);
+      }
+  }
 
   // Send a new message
-  const sendMessage = useCallback(async (messageData) => {
-    if (!selectedUser) return;
-    try {
-      const res = await axiosInstance.post(
-        `/messages/send/${selectedUser._id}`,
-        messageData
-      );
-      setMessages((prev) => [...prev, res.data]);
-    } catch (error) {
-      toast.error(error?.response?.data?.message || "Failed to send message");
+  async function sendMessage(messageData) {
+    if(!selectedUser){
+        return
     }
-  }, [selectedUser]);
 
-  
+    try {
+        const res = await axiosInstance.post(
+            `messages/send/${selectedUser._id}`,messageData
+        )
+        setMessages((prev) => [...prev, res.data])
+    } catch (error) {
+        toast.error(error?.response?.data?.message || 'Failed to send message')
+    }
+  }
+
+  useEffect(() => {
+    getUsers();
+  }, [])
+
 
   // Provide the state and actions
   return (
-    <ChatContext.Provider
+    <userChatContext.Provider
       value={{
         messages,
         users,
@@ -69,10 +72,9 @@ export const ChatProvider = ({ children }) => {
         getMessages,
         sendMessage,
         setSelectedUser,
-       
       }}
     >
       {children}
-    </ChatContext.Provider>
+    </userChatContext.Provider>
   );
 };
