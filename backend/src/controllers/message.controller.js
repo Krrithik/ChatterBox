@@ -23,7 +23,7 @@ export const getMessages = async (req,res) => {
         const { id:userToChatId } = req.params
         const myId = req.user._id
 
-        const messages = await Message.model.find({
+        const messages = await Message.find({
             $or : [
                 { senderId:myId , receiverId:userToChatId},
                 {senderId: userToChatId, receiverId: myId}
@@ -69,3 +69,9 @@ export const sendMessage = async (req,res) => {
         
     }
 }
+
+
+/*     const messages = await Message.model.find({ 
+     
+    this was the change made -> in the error
+*/
