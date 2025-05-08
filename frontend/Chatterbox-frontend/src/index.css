@@ -1,3 +1,135 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* profile page */
+.profile-root {
+    min-height: 100vh;
+    padding-top: 80px;
+    background: #4368ff;
+  }
+  
+  .profile-loading {
+    min-height: 100vh;
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 1.25rem;
+  }
+  
+  .profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 32px 16px;
+  }
+  
+  .profile-card {
+    background: #e5e7eb;
+    border-radius: 18px;
+    padding: 32px 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  
+  .profile-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  
+  .profile-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  
+  .profile-subtitle {
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  .profile-avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .profile-avatar-wrapper {
+    position: relative;
+  }
+  
+  .profile-avatar-img {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  
+  .profile-info {
+    margin-bottom: 32px;
+  }
+  
+  .profile-info-row {
+    margin-bottom: 16px;
+  }
+  
+  .profile-info-label {
+    color: #888;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  
+  .profile-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .profile-info-value {
+    padding: 10px 16px;
+    background: #f3f4f6;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 1rem;
+    color: #222;
+  }
+  
+  .profile-account-section {
+    background: #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 24px;
+  }
+  
+  .profile-account-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  
+  .profile-account-info {
+    font-size: 0.98rem;
+  }
+  
+  .profile-account-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #cbd5e1;
+  }
+  
+  .profile-account-row:last-child {
+    border-bottom: none;
+  }
+  
+  .profile-status-active {
+    color: #22c55e;
+    font-weight: 500;
+  }
+  
