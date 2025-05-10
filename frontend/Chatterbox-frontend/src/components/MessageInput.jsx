@@ -41,7 +41,7 @@ export default function MessageInput(){
               className="btn btn-sm btn-circle"
               disabled={!text.trim()}
             >
-              <Send size={22} />
+              <Send color="skyblue" size={22} />
             </button>
           </form>
         </div>
