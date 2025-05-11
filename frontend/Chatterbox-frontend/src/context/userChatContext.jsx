@@ -1,6 +1,7 @@
-import React, { createContext, useEffect, useState, useCallback } from "react";
+import React, { createContext, useEffect, useState, useCallback, useContext } from "react";
 import toast from "react-hot-toast";
 import { axiosInstance } from "../lib/axios";
+import { userAuthContext } from "./userAuthContext";
 /* import { useAuthStore } from "./useAuthStore"; // Only needed for socket, see note below */
 
 export const userChatContext = createContext();
@@ -12,6 +13,8 @@ export const ChatProvider = ({ children }) => {
   const [isUsersLoading, setIsUsersLoading] = useState(false);
   const [isMessagesLoading, setIsMessagesLoading] = useState(false);
 
+
+  const { socket, user } = useContext(userAuthContext)
  
 
   // Fetch users for sidebar
@@ -55,6 +58,27 @@ export const ChatProvider = ({ children }) => {
         toast.error(error?.response?.data?.message || 'Failed to send message')
     }
   }
+
+
+   useEffect(() => {
+    if (!socket) return;
+
+    const handleNewMessage = (message) => {
+      if (
+        selectedUser &&
+        (message.senderId === selectedUser._id ||
+          message.receiverId === selectedUser._id)
+      ) {
+        setMessages((prev) => [...prev, message]);
+      }
+    };
+
+    socket.on("newMessage", handleNewMessage);
+
+    return () => {
+      socket.off("newMessage", handleNewMessage);
+    };
+  }, [socket, selectedUser]);
 
   useEffect(() => {
     getUsers();

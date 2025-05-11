@@ -15,12 +15,28 @@ const io = new Server(server, {
     }
 })
 
+export function getReceiverSocketId(userId) {
+  return userSocketList[userId];
+}
+
+const userSocketList = {}
+
 io.on('connection', (socket) => {
     console.log('a user connected', socket.id);
 
+    const userId = socket.handshake.query.userId
+    if(userId){
+        userSocketList[userId] = socket.id
+    }
+
+    // io.emit()
+    io.emit("onlineUsers", Object.keys(userSocketList))
+     
 
     socket.on('disconnect', () => {
         console.log('the user disconnected', socket.id);
+        delete userSocketList[userId]
+        io.emit('onlineUsers', Object.keys(userSocketList))
         
     })
     

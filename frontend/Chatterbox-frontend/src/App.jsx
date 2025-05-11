@@ -12,6 +12,8 @@ import { useContext } from "react";
 
 const App = () => {
   const { user, loading } = useContext(userAuthContext);
+  
+  
 
   if (loading) {
     return <div>Loading... </div>;

@@ -5,34 +5,35 @@ import { io } from "socket.io-client";
 
 export const userAuthContext = createContext();
 
-const baseURL = 'http://localhost:5050'
+const baseURL = "http://localhost:5050";
 
 export const UserAuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Add a loading state
-  const socketRef = useRef(null)
+  const socketRef = useRef(null);
+  const [onlineUsers, setOnlineUsers] = useState([])
 
-
-  function connectSocket(userId){
-
-    if(!userId || socketRef.current?.connected){
-      return
+  function connectSocket(userId) {
+    if (!userId || socketRef.current?.connected) {
+      return;
     }
 
-    socketRef.current = io(baseURL , {
-      query: { userId },
+    socketRef.current = io(baseURL, {
       withCredentials: true,
-    })
+      query: {   userId      },
+    });
 
-    socketRef.current.connect()
+    socketRef.current.connect();
 
-
+    socketRef.current.on("onlineUsers", (userIds) => {
+      setOnlineUsers(userIds)
+    });
   }
 
-
-  function disconnectSocket(){
-    if(socketRef.current?.connected){
+  function disconnectSocket() {
+    if (socketRef.current?.connected) {
       socketRef.current.disconnect();
+      setOnlineUsers([])
     }
   }
 
@@ -41,10 +42,10 @@ export const UserAuthProvider = ({ children }) => {
       try {
         const response = await axiosInstance.get("/auth/check");
         setUser(response.data);
-        connectSocket(response.data._id)
+        connectSocket(response.data._id);
       } catch (error) {
         setUser(null);
-        disconnectSocket()
+        disconnectSocket();
         console.error("Failed to fetch user:", error);
       } finally {
         setLoading(false); // Set loading to false after fetch
@@ -55,7 +56,7 @@ export const UserAuthProvider = ({ children }) => {
 
     return () => {
       disconnectSocket();
-    }
+    };
   }, []);
 
   // Auth actions
@@ -74,9 +75,7 @@ export const UserAuthProvider = ({ children }) => {
       const res = await axiosInstance.post("/auth/login", userData);
       setUser(res.data);
       toast.success("Logged in successfully");
-      connectSocket(res.data._id)
-
-
+      connectSocket(res.data._id);
     } catch (error) {
       toast.error(error?.response?.data?.message || "Login failed");
     }
@@ -103,7 +102,8 @@ export const UserAuthProvider = ({ children }) => {
           signup,
           login,
           logout,
-          socket : socketRef.current
+          socket: socketRef.current,
+          onlineUsers
         }}
       >
         {loading ? <p> Loading ... </p> : children}
