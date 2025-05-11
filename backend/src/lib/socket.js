@@ -31,7 +31,8 @@ io.on('connection', (socket) => {
 
     // io.emit()
     io.emit("onlineUsers", Object.keys(userSocketList))
-     
+    
+    console.log(`Current online users: ${Object.keys(userSocketList)}`);
 
     socket.on('disconnect', () => {
         console.log('the user disconnected', socket.id);

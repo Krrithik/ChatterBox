@@ -27,6 +27,7 @@ export const UserAuthProvider = ({ children }) => {
 
     socketRef.current.on("onlineUsers", (userIds) => {
       setOnlineUsers(userIds)
+      console.log("Online users (from server):", userIds);
     });
   }
 

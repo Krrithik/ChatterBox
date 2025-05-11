@@ -14,7 +14,7 @@ export const ChatProvider = ({ children }) => {
   const [isMessagesLoading, setIsMessagesLoading] = useState(false);
 
 
-  const { socket, user } = useContext(userAuthContext)
+  const { socket, user, onlineUsers } = useContext(userAuthContext)
  
 
   // Fetch users for sidebar
@@ -48,6 +48,16 @@ export const ChatProvider = ({ children }) => {
     if(!selectedUser){
         return
     }
+
+
+console.table([
+  {
+    "To User ID": selectedUser.fullName,
+    "Message Text": messageData.text,
+    "Online": onlineUsers.includes(selectedUser._id),
+  }
+]);
+
 
     try {
         const res = await axiosInstance.post(
