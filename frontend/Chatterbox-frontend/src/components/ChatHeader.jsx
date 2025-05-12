@@ -7,6 +7,10 @@ const ChatHeader = () => {
   const { selectedUser, setSelectedUser } = useContext(userChatContext)
   const { onlineUsers } = useContext(userAuthContext)
 
+
+  const isOnline = onlineUsers.includes(selectedUser._id)
+  
+
   return (
     <div className="p-2.5 border-b border-base-300">
       <div className="flex items-center justify-between">
@@ -20,7 +24,15 @@ const ChatHeader = () => {
 
           {/* User info */}
           <div>
-            <h3 className="font-medium">{selectedUser.fullName}</h3>
+            <h3 className="font-medium">{selectedUser.fullName}{"  "}{isOnline ? (
+                <span className="text-green-500 text-xs ml-2 font-semibold">
+                   ● Online
+                </span>
+              ) : (
+                <span className="text-gray-400 text-xs ml-2 font-semibold">
+                  ● Offline
+                </span>
+              )}</h3>
           </div>
         </div>
 
