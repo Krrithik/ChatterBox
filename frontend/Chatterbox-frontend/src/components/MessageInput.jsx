@@ -25,7 +25,7 @@ export default function MessageInput(){
     }
 
     return (
-        <div className="p-4 w-full">
+        <div className="p-4 w-full review-bar-bg">
           <form onSubmit={handleSendMessage} className="flex items-center gap-2">
             <div className="flex-1 flex gap-2">
               <input

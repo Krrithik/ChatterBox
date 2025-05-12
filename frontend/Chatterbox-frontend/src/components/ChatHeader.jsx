@@ -12,7 +12,7 @@ const ChatHeader = () => {
   
 
   return (
-    <div className="p-2.5 border-b border-base-300">
+    <div className="p-2.5 border-b border-base-300 text-blue-50 chat-container-header">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           {/* Avatar */}
@@ -25,11 +25,11 @@ const ChatHeader = () => {
           {/* User info */}
           <div>
             <h3 className="font-medium">{selectedUser.fullName}{"  "}{isOnline ? (
-                <span className="text-green-500 text-xs ml-2 font-semibold">
+                <span className="text-green-400 text-xs ml-2 font-semibold">
                    ● Online
                 </span>
               ) : (
-                <span className="text-gray-400 text-xs ml-2 font-semibold">
+                <span className="text-gray-300 text-xs ml-2 font-semibold">
                   ● Offline
                 </span>
               )}</h3>

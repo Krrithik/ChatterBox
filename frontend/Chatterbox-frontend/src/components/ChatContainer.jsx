@@ -34,9 +34,9 @@ export default function ChatContainer() {
   }
 
   return (
-    <div className="chat-container">
+    <div className="chat-container border-black">
       <ChatHeader />
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 chat-container-bg ">
         {messages.map((message) => (
           <div
             key={message._id}
@@ -54,9 +54,9 @@ export default function ChatContainer() {
                 />
               </div>
             </div>
-            <div className="chat-header mb-1">
+            <div className="chat-header mb-1 text-black">
               { message.senderId === user._id ? '' : selectedUser.fullName }
-              <time className="text-xs opacity-50 ml-1">
+              <time className="text-xs opacity-50 ml-1 text-black">
                 {formatMessageTime(message.createdAt)}
               </time>
             </div>

@@ -18,7 +18,7 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="sidebar-root">
+    <aside className="sidebar-root border-black">
       <div className="sidebar-header">
         <Users className="sidebar-header-icon" />
         <span className="sidebar-header-title">Contacts</span>
@@ -41,7 +41,7 @@ export default function Sidebar() {
             />
             </div>
             </div>
-            <span className="sidebar-user-name">{user.fullName}</span>
+            <span className="sidebar-user-name text-black">{user.fullName}</span>
           </button>
         ))}
         {users.length === 0 && (
