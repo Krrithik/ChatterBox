@@ -10,7 +10,7 @@ const NavBar = () => {
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost normal-case text-xl">
           {" "}
-          ChatApp{" "}
+          ChatterBox{" "}
         </Link>{" "}
       </div>{" "}
       <div className="flex-none">
@@ -31,7 +31,7 @@ const NavBar = () => {
                 <Link to="/settings"> Settings </Link>
               </li>
               <li>
-                <button onClick={logout}> Logout </button>{" "}
+                <button onClick={logout} className="hover:bg-red-500 hover:text-white"> Logout </button>{" "}
               </li>{" "}
             </>
           ) : (
