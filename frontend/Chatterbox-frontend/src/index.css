@@ -206,6 +206,10 @@
     font-size: 1rem;
     opacity: 0.7;
   }
+
+  .chat-container-loadingScreen{
+    background-color: rgb(176, 206, 223);
+  }
   
 
   /* STYLES FOR SIDEBAR */

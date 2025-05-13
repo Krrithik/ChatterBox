@@ -30,7 +30,7 @@ export default function ChatContainer() {
   }, [messages]);
 
   if (isMessagesLoading) {
-    return <div>Loading...</div>;
+    return <div className="chat-container-loadingScreen flex-1 overflow-y-auto p-4 space-y-4"  >Loading...</div>;
   }
 
   return (
