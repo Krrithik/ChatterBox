@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../lib/axios';
+import "../index.css";  
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -29,7 +30,7 @@ const LoginPage = () => {
   };
 
   return (
-    
+    <div className='login-container min-h-screen flex items-center justify-center bg-base-200'>
       <div className="card w-96 shadow-lg p-8 bg-base-100">
         <h2 className="text-2xl font-bold mb-4">Login</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -52,7 +53,7 @@ const LoginPage = () => {
           </button>
         </form>
       </div>
-    
+    </div>
   );
 };
 

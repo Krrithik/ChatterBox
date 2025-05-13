@@ -1,8 +1,11 @@
 export default function SettingsPage(){
     return (
         <>
-         <h1 className="text-2xl font-bold">Settings</h1>
-         <p>Update your settings here.</p>
+        <div className="min-h-screen flex items-center justify-center bg-base-200">
+
+         <p>ChatterBox is a Real-time chatapp</p>
+
+        </div>
          
         </>
     )

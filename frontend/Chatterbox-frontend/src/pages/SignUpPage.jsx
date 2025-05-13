@@ -32,8 +32,8 @@ const SignUpPage = () => {
   };
 
   return (
-    
-      <div className="card w-96 shadow-lg p-8 bg-base-100">
+    <div className='signup-container min-h-screen flex items-center justify-center bg-base-200'>
+      <div className="card w-96 shadow-lg p-8 bg-base-100 ">
         <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
@@ -61,6 +61,8 @@ const SignUpPage = () => {
             Sign Up
           </button>
         </form>
+      </div>
+
       </div>
     
   );

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { userAuthContext } from "../context/userAuthContext";
 import { Mail, User } from "lucide-react";
-import "../index.css"; // Import your CSS file here
+import "../index.css"; 
 
 const ProfilePage = () => {
   const { user, loading } = useContext(userAuthContext);

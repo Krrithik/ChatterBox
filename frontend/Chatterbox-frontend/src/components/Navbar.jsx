@@ -28,7 +28,7 @@ const NavBar = () => {
               </li>
               <li>
                 {" "}
-                <Link to="/settings"> Settings </Link>
+                <Link to="/settings"> About </Link>
               </li>
               <li>
                 <button onClick={logout} className="hover:bg-red-500 hover:text-white"> Logout </button>{" "}
