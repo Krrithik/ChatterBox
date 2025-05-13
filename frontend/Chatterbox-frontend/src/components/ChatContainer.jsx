@@ -47,8 +47,8 @@ export default function ChatContainer() {
                 <img
                   src={
                     message.senderId === user._id
-                      ? user.profilePic || "/avatar.png"
-                      : selectedUser.profilePic || "/avatar.png"
+                      ? user.profilePic || "/userProfilePic.jpg"
+                      : selectedUser.profilePic || "/userProfilePic.jpg"
                   }
                   alt="profile pic"
                 />

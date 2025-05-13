@@ -22,7 +22,7 @@ const ProfilePage = () => {
           <div className="profile-avatar-section">
             <div className="profile-avatar-wrapper">
               <img
-                src="/avatar.png"
+                src="/userProfilePic.jpg"
                 alt="Profile"
                 className="profile-avatar-img"
               />

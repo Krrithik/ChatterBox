@@ -35,7 +35,7 @@ export default function Sidebar() {
             <div className={`avatar ${onlineUsers.includes(user._id) ? "online" : "offline"}`}>
              <div className="w-10 rounded-full">
             <img
-              src={user.profilePic || "/avatar.png"}
+              src={user.profilePic || "/userProfilePic.jpg"}
               alt={user.name}
               className="sidebar-avatar"
             />
