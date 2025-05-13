@@ -17,10 +17,9 @@ export default function MessageInput(){
     
         try {
           await sendMessage({ text: trimmedText });
-          setText(""); // Clear input after send
+          setText(""); 
         } catch (error) {
           console.error("Failed to send message:", error);
-          // Optionally show error toast
         }
     }
 

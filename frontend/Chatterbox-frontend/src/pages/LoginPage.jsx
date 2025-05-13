@@ -16,11 +16,6 @@ const LoginPage = () => {
       const response = await axiosInstance.post('/auth/login', { email, password });
       const { _id, fullName, email: loggedInEmail } = response.data;
 
-      localStorage.setItem('user', JSON.stringify({
-        _id,
-        fullName,
-        email: loggedInEmail
-      }));
       toast.success('Login successful!');
       navigate('/');
     } catch (error) {

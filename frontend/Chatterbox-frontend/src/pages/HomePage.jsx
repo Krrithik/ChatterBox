@@ -1,8 +1,8 @@
-import { userChatContext } from "../context/userChatContext"; // <-- Use the context version!
+import { userChatContext } from "../context/userChatContext"; 
 import Sidebar from "../components/Sidebar";
 import NoChatSelected from "../components/NoSelectedChats";
 import ChatContainer from "../components/ChatContainer";
-import "../index.css"; // Import your CSS
+import "../index.css"; 
 import { useContext } from "react";
 
 const HomePage = () => {

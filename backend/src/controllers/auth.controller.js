@@ -10,7 +10,7 @@ export const signup = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // hash password
+    /* bcrypt hashing */
     if (password.length < 6) {
       return res
         .status(400)
@@ -33,7 +33,6 @@ export const signup = async (req, res) => {
     });
 
     if (newUser) {
-      //generate JWT token here
       generateToken(newUser._id, res);
       await newUser.save();
 

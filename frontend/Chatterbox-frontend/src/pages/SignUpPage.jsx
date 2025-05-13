@@ -16,13 +16,6 @@ const SignUpPage = () => {
       const { _id, fullName: signedUpFullName, email: signedUpEmail } = response.data;
 
       console.log(fullName, email);
-      
-
-      localStorage.setItem('user', JSON.stringify({
-        _id,
-        fullName: signedUpFullName,
-        email: signedUpEmail
-      }));
       toast.success('Signup successful!');
       navigate('/');
     } catch (error) {

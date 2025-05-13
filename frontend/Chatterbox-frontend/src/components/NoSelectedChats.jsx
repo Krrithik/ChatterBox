@@ -7,7 +7,7 @@ export default function NoSelectedChats(){
             
     
             {/* Welcome Text */}
-            <h2 className="nochat-title">Welcome to ChatApp!</h2>
+            <h2 className="nochat-title">Welcome to ChatterBox!</h2>
             <p className="nochat-desc text-black">
               Select a conversation from the sidebar to start chatting
             </p>

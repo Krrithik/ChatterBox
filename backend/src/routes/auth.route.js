@@ -17,7 +17,7 @@ router.post("/login", login);
 
 router.post("/logout", logout);
 
-router.put("/update-profile", protectRoute, updateProfile); // protectRoute is the middleware and updateProfile is endpoint
+/* router.put("/update-profile", protectRoute, updateProfile); */
 
 router.get('/check', protectRoute, checkAuth)
 

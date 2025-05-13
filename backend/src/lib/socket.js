@@ -29,7 +29,6 @@ io.on('connection', (socket) => {
         userSocketList[userId] = socket.id
     }
 
-    // io.emit()
     io.emit("onlineUsers", Object.keys(userSocketList))
     
     console.log(`Current online users: ${Object.keys(userSocketList)}`);

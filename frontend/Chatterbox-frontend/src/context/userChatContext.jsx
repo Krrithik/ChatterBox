@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, useState, useCallback, useContext } from "react";
+import React, {
+  createContext,
+  useEffect,
+  useState,
+  useCallback,
+  useContext,
+} from "react";
 import toast from "react-hot-toast";
 import { axiosInstance } from "../lib/axios";
 import { userAuthContext } from "./userAuthContext";
@@ -13,11 +19,9 @@ export const ChatProvider = ({ children }) => {
   const [isUsersLoading, setIsUsersLoading] = useState(false);
   const [isMessagesLoading, setIsMessagesLoading] = useState(false);
 
+  const { socket, user, onlineUsers } = useContext(userAuthContext);
 
-  const { socket, user, onlineUsers } = useContext(userAuthContext)
- 
-
-  // Fetch users for sidebar
+  // Fetching users for sidebar
   async function getUsers() {
     setIsUsersLoading(true);
     try {
@@ -30,7 +34,7 @@ export const ChatProvider = ({ children }) => {
     }
   }
 
-  // Fetch messages with a specific user
+
   const getMessages = useCallback(async (userId) => {
     setIsMessagesLoading(true);
     try {
@@ -43,34 +47,32 @@ export const ChatProvider = ({ children }) => {
     }
   }, []);
 
-  // Send a new message
+
   async function sendMessage(messageData) {
-    if(!selectedUser){
-        return
+    if (!selectedUser) {
+      return;
     }
 
-
-console.table([
-  {
-    "To User ID": selectedUser.fullName,
-    "Message Text": messageData.text,
-    "Online": onlineUsers.includes(selectedUser._id),
-  }
-]);
-
+    console.table([
+      {
+        "To User ID": selectedUser.fullName,
+        "Message Text": messageData.text,
+        Online: onlineUsers.includes(selectedUser._id),
+      },
+    ]);
 
     try {
-        const res = await axiosInstance.post(
-            `messages/send/${selectedUser._id}`,messageData
-        )
-        setMessages((prev) => [...prev, res.data])
+      const res = await axiosInstance.post(
+        `messages/send/${selectedUser._id}`,
+        messageData
+      );
+      setMessages((prev) => [...prev, res.data]);
     } catch (error) {
-        toast.error(error?.response?.data?.message || 'Failed to send message')
+      toast.error(error?.response?.data?.message || "Failed to send message");
     }
   }
 
-
-   useEffect(() => {
+  useEffect(() => {
     if (!socket) return;
 
     const handleNewMessage = (message) => {
@@ -92,10 +94,9 @@ console.table([
 
   useEffect(() => {
     getUsers();
-  }, [])
+  }, []);
 
-
-  // Provide the state and actions
+  
   return (
     <userChatContext.Provider
       value={{

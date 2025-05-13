@@ -9,7 +9,7 @@ const baseURL = "http://localhost:5050";
 
 export const UserAuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Add a loading state
+  const [loading, setLoading] = useState(true); 
   const socketRef = useRef(null);
   const [onlineUsers, setOnlineUsers] = useState([])
 
@@ -22,7 +22,7 @@ export const UserAuthProvider = ({ children }) => {
       withCredentials: true,
       query: {   userId      },
     });
-
+ 
     socketRef.current.connect();
 
     socketRef.current.on("onlineUsers", (userIds) => {
@@ -60,7 +60,6 @@ export const UserAuthProvider = ({ children }) => {
     };
   }, []);
 
-  // Auth actions
   const signup = async (userData) => {
     try {
       const res = await axiosInstance.post("/auth/signup", userData);
